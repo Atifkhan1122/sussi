@@ -21,6 +21,12 @@
             align-items: center;
             font-weight: bold;
         }
+        .fish-card img {
+            transition: transform 0.3s ease;
+        }
+        .fish-card:hover img {
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body class="bg-blue-50 font-sans">
@@ -59,34 +65,59 @@
     </section>
 
     <section id="gallery" class="py-16 px-6 max-w-7xl mx-auto text-center">
-        <h3 class="text-4xl font-black text-slate-800 mb-2">PAKISTAN'S BEST FISH GALLERY</h3>
-        <p class="text-slate-500 mb-12 font-bold uppercase tracking-widest">Theela | Morkha | Rahu | & More</p>
+        <h3 class="text-4xl font-black text-slate-800 mb-2 uppercase">Fresh Stock Gallery</h3>
+        <p class="text-slate-500 mb-12 font-bold uppercase tracking-widest">Sindh Ki Behtreen Machli</p>
         
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            <div class="bg-white p-2 rounded-xl shadow-md border-2 border-blue-100">
-                <img src="https://images.unsplash.com/photo-1534349802504-20d099318b76?w=400" class="rounded-lg h-48 w-full object-cover">
-                <p class="mt-2 font-black text-blue-600">THEELA FISH</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            
+            <div class="fish-card bg-white p-3 rounded-xl shadow-lg border-b-4 border-blue-600">
+                <img src="theela_fish.jpg" alt="Theela Fish" class="rounded-lg h-56 w-full object-cover mb-3">
+                <p class="font-black text-slate-800">THEELA FISH</p>
+                <span class="text-sm text-blue-600 font-bold">Fresh from River</span>
             </div>
-            <div class="bg-white p-2 rounded-xl shadow-md border-2 border-blue-100">
-                <img src="https://images.unsplash.com/photo-1516738901171-8eb4fc13bd20?w=400" class="rounded-lg h-48 w-full object-cover">
-                <p class="mt-2 font-black text-blue-600">RAHU (ROHU)</p>
+
+            <div class="fish-card bg-white p-3 rounded-xl shadow-lg border-b-4 border-blue-600">
+                <img src="morkha_fish.jpg" alt="Morkha Fish" class="rounded-lg h-56 w-full object-cover mb-3">
+                <p class="font-black text-slate-800">MORKHA SPECIAL</p>
+                <span class="text-sm text-blue-600 font-bold">Premium Quality</span>
             </div>
-            <div class="bg-white p-2 rounded-xl shadow-md border-2 border-blue-100">
-                <img src="https://images.unsplash.com/photo-1544551763-8a03f4f6b158?w=400" class="rounded-lg h-48 w-full object-cover">
-                <p class="mt-2 font-black text-blue-600">MORKHA SPECIAL</p>
+
+            <div class="fish-card bg-white p-3 rounded-xl shadow-lg border-b-4 border-blue-600">
+                <img src="hyderabad_market.jpg" alt="Hyderabad Market" class="rounded-lg h-56 w-full object-cover mb-3">
+                <p class="font-black text-slate-800">HYDERABAD MARKET</p>
+                <span class="text-sm text-blue-600 font-bold">Daily Fresh Arrivals</span>
             </div>
-            <div class="bg-white p-2 rounded-xl shadow-md border-2 border-blue-100">
-                <img src="https://images.unsplash.com/photo-1524704684615-288270104631?w=400" class="rounded-lg h-48 w-full object-cover">
-                <p class="mt-2 font-black text-blue-600">FRESH CATCH 4</p>
+
+            <div class="fish-card bg-white p-3 rounded-xl shadow-lg border-b-4 border-blue-600">
+                <img src="old_man_fish.jpg" alt="Fresh Catch" class="rounded-lg h-56 w-full object-cover mb-3">
+                <p class="font-black text-slate-800">EXPERT SELECTION</p>
+                <span class="text-sm text-blue-600 font-bold">Taza aur Umda</span>
             </div>
-            <div class="bg-white p-2 rounded-xl shadow-md border-2 border-blue-100"><img src="https://via.placeholder.com/400x300?text=Fish+Photo+5" class="rounded-lg h-48 w-full object-cover"></div>
-            <div class="bg-white p-2 rounded-xl shadow-md border-2 border-blue-100"><img src="https://via.placeholder.com/400x300?text=Fish+Photo+6" class="rounded-lg h-48 w-full object-cover"></div>
-            <div class="bg-white p-2 rounded-xl shadow-md border-2 border-blue-100"><img src="https://via.placeholder.com/400x300?text=Fish+Photo+7" class="rounded-lg h-48 w-full object-cover"></div>
-            <div class="bg-white p-2 rounded-xl shadow-md border-2 border-blue-100"><img src="https://via.placeholder.com/400x300?text=Fish+Photo+8" class="rounded-lg h-48 w-full object-cover"></div>
-            <div class="bg-white p-2 rounded-xl shadow-md border-2 border-blue-100"><img src="https://via.placeholder.com/400x300?text=Fish+Photo+9" class="rounded-lg h-48 w-full object-cover"></div>
-            <div class="bg-white p-2 rounded-xl shadow-md border-2 border-blue-100"><img src="https://via.placeholder.com/400x300?text=Fish+Photo+10" class="rounded-lg h-48 w-full object-cover"></div>
-            <div class="bg-white p-2 rounded-xl shadow-md border-2 border-blue-100"><img src="https://via.placeholder.com/400x300?text=Fish+Photo+11" class="rounded-lg h-48 w-full object-cover"></div>
-            <div class="bg-white p-2 rounded-xl shadow-md border-2 border-blue-100"><img src="https://via.placeholder.com/400x300?text=Fish+Photo+12" class="rounded-lg h-48 w-full object-cover"></div>
+
+            <div class="fish-card bg-white p-3 rounded-xl shadow-lg border-b-4 border-blue-600">
+                <img src="noonari_fish_shop.jpg" alt="Noonari Fish Shop" class="rounded-lg h-56 w-full object-cover mb-3">
+                <p class="font-black text-slate-800">NOONARI FISH SHOP</p>
+                <span class="text-sm text-blue-600 font-bold">Hyderabad Address</span>
+            </div>
+
+            <div class="fish-card bg-white p-3 rounded-xl shadow-lg border-b-4 border-blue-600">
+                <img src="fish_closeup.jpg" alt="Fish Quality" class="rounded-lg h-56 w-full object-cover mb-3">
+                <p class="font-black text-slate-800">BEHTREEN ZAIQA</p>
+                <span class="text-sm text-blue-600 font-bold">100% Organic</span>
+            </div>
+
+            <div class="fish-card bg-white p-3 rounded-xl shadow-lg border-b-4 border-blue-600">
+                <img src="market_crowd.jpg" alt="Market Crowd" class="rounded-lg h-56 w-full object-cover mb-3">
+                <p class="font-black text-slate-800">CUSTOMER TRUST</p>
+                <span class="text-sm text-blue-600 font-bold">Hyderabad's Favorite</span>
+            </div>
+
+            <div class="fish-card bg-white p-3 rounded-xl shadow-lg border-b-4 border-blue-600">
+                <img src="big_fish.jpg" alt="Big Fish" class="rounded-lg h-56 w-full object-cover mb-3">
+                <p class="font-black text-slate-800">BIG SIZE FISH</p>
+                <span class="text-sm text-blue-600 font-bold">Available Now</span>
+            </div>
+
         </div>
     </section>
 
@@ -95,19 +126,19 @@
         <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <div class="bg-blue-600 text-white p-8 rounded-2xl">
                 <i class="fas fa-map-marker-alt text-4xl mb-4"></i>
-                <h4 class="text-2xl font-bold mb-2">HYDERABAD & TANDO MUHAMMAD KHAN</h4>
+                <h4 class="text-2xl font-bold mb-2 uppercase">Hyderabad & TMK</h4>
                 <p class="font-bold">And All Nearby Areas</p>
             </div>
             <div class="bg-slate-800 text-white p-8 rounded-2xl">
                 <i class="fas fa-truck text-4xl mb-4"></i>
-                <h4 class="text-2xl font-bold mb-2">FREE HOME DELIVERY</h4>
+                <h4 class="text-2xl font-bold mb-2 uppercase">Free Home Delivery</h4>
                 <p>Order karein aur ghar baithe tazi machli hasil karein.</p>
             </div>
         </div>
     </section>
 
-    <section class="py-16 text-center px-6">
-        <h3 class="text-2xl font-black text-slate-800 mb-8 uppercase">Direct Order / Inquiry</h3>
+    <section class="py-16 text-center px-6 bg-blue-50">
+        <h3 class="text-2xl font-black text-slate-800 mb-8 uppercase italic">Noonari Fish Supply</h3>
         <div class="flex flex-col md:flex-row justify-center gap-6">
             <div class="flex items-center justify-center space-x-4 bg-white px-6 py-4 rounded-xl shadow border">
                 <i class="fas fa-phone-alt text-blue-600"></i>
@@ -121,8 +152,8 @@
     </section>
 
     <footer class="bg-slate-900 text-slate-400 py-10 text-center text-sm">
-        <p class="mb-2">&copy; 2024 Fresh Fish Supply Sindh. Managed by AquaFresh Team.</p>
-        <p>Serving Hyderabad, Tando Muhammad Khan & Surroundings.</p>
+        <p class="mb-2 font-bold">&copy; 2025 Noonari Fresh Fish Supply. All Rights Reserved.</p>
+        <p class="uppercase tracking-widest">Hyderabad | Tando Muhammad Khan | Sindh</p>
     </footer>
 
 </body>
