@@ -1,160 +1,2192 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fresh Fish Supply | Hyderabad & Tando Muhammad Khan</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        .whatsapp-float {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #25d366;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 50px;
-            box-shadow: 2px 5px 15px rgba(0,0,0,0.3);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            font-weight: bold;
+.class public Lcom/hiba/supertipsbet/ContentActivity;
+.super Landroidx/appcompat/app/AppCompatActivity;
+.source "ContentActivity.java"
+
+
+# static fields
+.field private static final DATE_FORMATTER:Ljava/time/format/DateTimeFormatter;
+
+.field private static final MAX_CACHE_SIZE:I = 0x5
+
+.field private static final PRELOAD_THRESHOLD:I = 0x1
+
+.field private static final TAG:Ljava/lang/String; = "ContentActivity"
+
+
+# instance fields
+.field private apiService:Lcom/hiba/supertipsbet/api/ApiInterface;
+
+.field private couponDataSource:Ljava/util/List;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljava/util/List<",
+            "Lcom/hiba/supertipsbet/entity/Coupon;",
+            ">;"
         }
-        .fish-card img {
-            transition: transform 0.3s ease;
+    .end annotation
+.end field
+
+.field private couponLayoutManager:Landroidx/recyclerview/widget/LinearLayoutManager;
+
+.field private currentDate:Ljava/lang/String;
+
+.field private currentDateIndex:I
+
+.field private currentPage:I
+
+.field private dataCache:Ljava/util/Map;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljava/util/Map<",
+            "Ljava/lang/String;",
+            "Ljava/util/List<",
+            "Lcom/hiba/supertipsbet/entity/Coupon;",
+            ">;>;"
         }
-        .fish-card:hover img {
-            transform: scale(1.05);
+    .end annotation
+.end field
+
+.field private dates:Ljava/util/List;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljava/util/List<",
+            "Ljava/lang/String;",
+            ">;"
         }
-    </style>
-</head>
-<body class="bg-blue-50 font-sans">
+    .end annotation
+.end field
 
-    <a href="https://api.whatsapp.com/send?phone=923333649966" target="_blank" class="whatsapp-float">
-        <i class="fab fa-whatsapp text-2xl mr-2"></i> Order Now
-    </a>
+.field private datesLayoutManager:Landroidx/recyclerview/widget/LinearLayoutManager;
 
-    <nav class="bg-white shadow-lg sticky top-0 z-50 px-6 py-4 flex justify-between items-center">
-        <div class="flex items-center space-x-2">
-            <i class="fas fa-fish text-blue-600 text-3xl"></i>
-            <h1 class="text-2xl font-black text-slate-800 italic">SINDH<span class="text-blue-600">FISH</span></h1>
-        </div>
-        <div class="hidden md:flex space-x-6 items-center">
-            <a href="#gallery" class="font-bold text-slate-600 hover:text-blue-600">Our Fish</a>
-            <a href="#contact" class="font-bold text-slate-600 hover:text-blue-600">Address</a>
-            <div class="text-right">
-                <p class="text-xs font-bold text-blue-600">Call Us 24/7</p>
-                <p class="text-sm font-black text-slate-800">0333-3649966 | 0301-3646948</p>
-            </div>
-        </div>
-    </nav>
+.field private executorService:Ljava/util/concurrent/ExecutorService;
 
-    <section class="relative bg-slate-900 text-white py-20 px-6 text-center">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-4xl md:text-6xl font-extrabold mb-4 uppercase tracking-tight">Taza Machli - Seedha Darya Se!</h2>
-            <p class="text-xl text-blue-300 font-bold mb-6">Theela, Morkha, Rahu aur mazeed tazi machliyan ab aapke sheher mein.</p>
-            <div class="bg-yellow-400 text-slate-900 inline-block px-6 py-2 rounded-full font-black text-lg mb-8 animate-bounce">
-                🚀  HOME DELIVERY IN HYDERABAD & TMK
-            </div>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="tel:03333649966" class="bg-blue-600 px-8 py-3 rounded-lg font-bold hover:bg-blue-700 transition w-full sm:w-auto">Call 0333-3649966</a>
-                <a href="tel:03013646948" class="bg-slate-700 px-8 py-3 rounded-lg font-bold hover:bg-slate-600 transition w-full sm:w-auto">Call 0301-3646948</a>
-            </div>
-        </div>
-    </section>
+.field private isDataLoading:Z
 
-    <section id="gallery" class="py-16 px-6 max-w-7xl mx-auto text-center">
-        <h3 class="text-4xl font-black text-slate-800 mb-2 uppercase">Fresh Stock Gallery</h3>
-        <p class="text-slate-500 mb-12 font-bold uppercase tracking-widest">Sindh Ki Behtreen Machli</p>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            
-            <div class="fish-card bg-white p-3 rounded-xl shadow-lg border-b-4 border-blue-600">
-                <img src="images/images/Gemini_Generated_Image_7yl3wo7yl3wo7yl3.png" alt="Fish" class="rounded-lg h-56 w-full object-cover mb-3">
-                <p class="font-black text-slate-800">FISH</p>
-                <span class="text-sm text-blue-600 font-bold">Fresh Fish </span>
-            </div>
+.field private mAdapter:Lcom/hiba/supertipsbet/adapter/CouponAdapter;
 
-            <div class="fish-card bg-white p-3 rounded-xl shadow-lg border-b-4 border-blue-600">
-                <img src="images/images/Gemini_Generated_Image_j404s7j404s7j404.png" alt="Morkha Fish" class="rounded-lg h-56 w-full object-cover mb-3">
-                <p class="font-black text-slate-800">MORKHA SPECIAL</p>
-                <span class="text-sm text-blue-600 font-bold">Premium Quality</span>
-            </div>
+.field private mAdapterRef:Ljava/lang/ref/WeakReference;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljava/lang/ref/WeakReference<",
+            "Lcom/hiba/supertipsbet/adapter/CouponAdapter;",
+            ">;"
+        }
+    .end annotation
+.end field
 
-            <div class="fish-card bg-white p-3 rounded-xl shadow-lg border-b-4 border-blue-600">
-                <img src="images/images/Gemini_Generated_Image_5j8zuj5j8zuj5j8z.png" alt="Hyderabad Market" class="rounded-lg h-56 w-full object-cover mb-3">
-                <p class="font-black text-slate-800">HYDERABAD MARKET</p>
-                <span class="text-sm text-blue-600 font-bold">Daily Fresh Arrivals</span>
-            </div>
+.field private mRecyclerView:Landroidx/recyclerview/widget/RecyclerView;
 
-            <div class="fish-card bg-white p-3 rounded-xl shadow-lg border-b-4 border-blue-600">
-                <img src="images/images/Gemini_Generated_Image_8j5iug8j5iug8j5i.png" alt="Fresh Catch" class="rounded-lg h-56 w-full object-cover mb-3">
-                <p class="font-black text-slate-800">EXPERT SELECTION</p>
-                <span class="text-sm text-blue-600 font-bold">Taza aur Umda</span>
-            </div>
+.field private mainHandler:Landroid/os/Handler;
 
-            <div class="fish-card bg-white p-3 rounded-xl shadow-lg border-b-4 border-blue-600">
-                <img src="images/images/Gemini_Generated_Image_7yl3wo7yl3wo7yl3.png" alt="Noonari Fish Shop" class="rounded-lg h-56 w-full object-cover mb-3">
-                <p class="font-black text-slate-800">NOONARI FISH SHOP</p>
-                <span class="text-sm text-blue-600 font-bold">Hyderabad Address</span>
-            </div>
+.field private menuDataSource:Ljava/util/List;
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "Ljava/util/List<",
+            "Lcom/hiba/supertipsbet/entity/MenuItem;",
+            ">;"
+        }
+    .end annotation
+.end field
 
-            <div class="fish-card bg-white p-3 rounded-xl shadow-lg border-b-4 border-blue-600">
-                <img src="images/images/Gemini_Generated_Image_h6brfqh6brfqh6br.png" alt="Fish Quality" class="rounded-lg h-56 w-full object-cover mb-3">
-                <p class="font-black text-slate-800">BEHTREEN ZAIQA</p>
-                <span class="text-sm text-blue-600 font-bold">100% Organic</span>
-            </div>
+.field private progressDialog:Landroid/app/ProgressDialog;
 
-            <div class="fish-card bg-white p-3 rounded-xl shadow-lg border-b-4 border-blue-600">
-                <img src="images/images/Gemini_Generated_Image_4o67cr4o67cr4o67.png" alt="Market Crowd" class="rounded-lg h-56 w-full object-cover mb-3">
-                <p class="font-black text-slate-800">CUSTOMER TRUST</p>
-                <span class="text-sm text-blue-600 font-bold">Hyderabad's Favorite</span>
-            </div>
+.field private rvDates:Landroidx/recyclerview/widget/RecyclerView;
 
-            <div class="fish-card bg-white p-3 rounded-xl shadow-lg border-b-4 border-blue-600">
-                <img src="images/images/Gemini_Generated_Image_4o67cr4o67cr4o67.png" alt="Big Fish" class="rounded-lg h-56 w-full object-cover mb-3">
-                <p class="font-black text-slate-800">BIG SIZE FISH</p>
-                <span class="text-sm text-blue-600 font-bold">Available Now</span>
-            </div>
+.field private selectedMenu:Lcom/hiba/supertipsbet/entity/MenuItem;
 
-        </div>
-    </section>
+.field private txtNotification:Landroid/widget/TextView;
 
-    <section id="contact" class="bg-white py-16 px-6 border-y-4 border-blue-600 text-center">
-        <h3 class="text-3xl font-black mb-6">OUR SERVICE AREA</h3>
-        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <div class="bg-blue-600 text-white p-8 rounded-2xl">
-                <i class="fas fa-map-marker-alt text-4xl mb-4"></i>
-                <h4 class="text-2xl font-bold mb-2 uppercase">Hyderabad & TMK</h4>
-                <p class="font-bold">And All Nearby Areas</p>
-            </div>
-            <div class="bg-slate-800 text-white p-8 rounded-2xl">
-                <i class="fas fa-truck text-4xl mb-4"></i>
-                <h4 class="text-2xl font-bold mb-2 uppercase"> Home Delivery</h4>
-                <p>Order karein aur ghar baithe tazi machli hasil karein.</p>
-            </div>
-        </div>
-    </section>
 
-    <section class="py-16 text-center px-6 bg-blue-50">
-        <h3 class="text-2xl font-black text-slate-800 mb-8 uppercase italic">Noonari Fish Supply</h3>
-        <div class="flex flex-col md:flex-row justify-center gap-6">
-            <div class="flex items-center justify-center space-x-4 bg-white px-6 py-4 rounded-xl shadow border">
-                <i class="fas fa-phone-alt text-blue-600"></i>
-                <span class="font-black text-xl">0333-3649966</span>
-            </div>
-            <div class="flex items-center justify-center space-x-4 bg-white px-6 py-4 rounded-xl shadow border">
-                <i class="fas fa-phone-alt text-blue-600"></i>
-                <span class="font-black text-xl">0301-3646948</span>
-            </div>
-        </div>
-    </section>
+# direct methods
+.method static constructor <clinit>()V
+    .registers 1
 
-    <footer class="bg-slate-900 text-slate-400 py-10 text-center text-sm">
-        <p class="mb-2 font-bold">&copy; 2025 Noonari Fresh Fish Supply. All Rights Reserved.</p>
-        <p class="uppercase tracking-widest">Hyderabad | Tando Muhammad Khan | Sindh</p>
-    </footer>
+    .line 50
+    const-string v0, "yyyy-MM-dd"
 
-</body>
-</html>
+    invoke-static {v0}, Ljava/time/format/DateTimeFormatter;->ofPattern(Ljava/lang/String;)Ljava/time/format/DateTimeFormatter;
+
+    move-result-object v0
+
+    sput-object v0, Lcom/hiba/supertipsbet/ContentActivity;->DATE_FORMATTER:Ljava/time/format/DateTimeFormatter;
+
+    return-void
+.end method
+
+.method public constructor <init>()V
+    .registers 3
+
+    .line 47
+    invoke-direct {p0}, Landroidx/appcompat/app/AppCompatActivity;-><init>()V
+
+    const/4 v0, 0x0
+
+    .line 55
+    iput v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->currentPage:I
+
+    .line 62
+    new-instance v1, Ljava/util/ArrayList;
+
+    invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
+
+    iput-object v1, p0, Lcom/hiba/supertipsbet/ContentActivity;->dates:Ljava/util/List;
+
+    .line 63
+    new-instance v1, Ljava/util/concurrent/ConcurrentHashMap;
+
+    invoke-direct {v1}, Ljava/util/concurrent/ConcurrentHashMap;-><init>()V
+
+    iput-object v1, p0, Lcom/hiba/supertipsbet/ContentActivity;->dataCache:Ljava/util/Map;
+
+    .line 70
+    iput-boolean v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->isDataLoading:Z
+
+    .line 71
+    const-string v1, ""
+
+    iput-object v1, p0, Lcom/hiba/supertipsbet/ContentActivity;->currentDate:Ljava/lang/String;
+
+    .line 72
+    iput v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->currentDateIndex:I
+
+    return-void
+.end method
+
+.method static synthetic access$000(Lcom/hiba/supertipsbet/ContentActivity;Lretrofit2/Response;)Z
+    .registers 2
+
+    .line 47
+    invoke-direct {p0, p1}, Lcom/hiba/supertipsbet/ContentActivity;->isValidResponse(Lretrofit2/Response;)Z
+
+    move-result p0
+
+    return p0
+.end method
+
+.method static synthetic access$100(Lcom/hiba/supertipsbet/ContentActivity;)Landroid/os/Handler;
+    .registers 1
+
+    .line 47
+    iget-object p0, p0, Lcom/hiba/supertipsbet/ContentActivity;->mainHandler:Landroid/os/Handler;
+
+    return-object p0
+.end method
+
+.method static synthetic access$200(Lcom/hiba/supertipsbet/ContentActivity;Ljava/lang/String;)V
+    .registers 2
+
+    .line 47
+    invoke-direct {p0, p1}, Lcom/hiba/supertipsbet/ContentActivity;->updateNotification(Ljava/lang/String;)V
+
+    return-void
+.end method
+
+.method static synthetic access$300(Lcom/hiba/supertipsbet/ContentActivity;)Ljava/util/List;
+    .registers 1
+
+    .line 47
+    iget-object p0, p0, Lcom/hiba/supertipsbet/ContentActivity;->dates:Ljava/util/List;
+
+    return-object p0
+.end method
+
+.method static synthetic access$302(Lcom/hiba/supertipsbet/ContentActivity;Ljava/util/List;)Ljava/util/List;
+    .registers 2
+
+    .line 47
+    iput-object p1, p0, Lcom/hiba/supertipsbet/ContentActivity;->dates:Ljava/util/List;
+
+    return-object p1
+.end method
+
+.method static synthetic access$400(Lcom/hiba/supertipsbet/ContentActivity;)V
+    .registers 1
+
+    .line 47
+    invoke-direct {p0}, Lcom/hiba/supertipsbet/ContentActivity;->setupDatesAdapter()V
+
+    return-void
+.end method
+
+.method static synthetic access$502(Lcom/hiba/supertipsbet/ContentActivity;Z)Z
+    .registers 2
+
+    .line 47
+    iput-boolean p1, p0, Lcom/hiba/supertipsbet/ContentActivity;->isDataLoading:Z
+
+    return p1
+.end method
+
+.method static synthetic access$600(Lcom/hiba/supertipsbet/ContentActivity;)V
+    .registers 1
+
+    .line 47
+    invoke-direct {p0}, Lcom/hiba/supertipsbet/ContentActivity;->hideLoading()V
+
+    return-void
+.end method
+
+.method static synthetic access$700(Lcom/hiba/supertipsbet/ContentActivity;Ljava/lang/String;Ljava/util/List;)V
+    .registers 3
+
+    .line 47
+    invoke-direct {p0, p1, p2}, Lcom/hiba/supertipsbet/ContentActivity;->addToCache(Ljava/lang/String;Ljava/util/List;)V
+
+    return-void
+.end method
+
+.method static synthetic access$800(Lcom/hiba/supertipsbet/ContentActivity;)Ljava/util/concurrent/ExecutorService;
+    .registers 1
+
+    .line 47
+    iget-object p0, p0, Lcom/hiba/supertipsbet/ContentActivity;->executorService:Ljava/util/concurrent/ExecutorService;
+
+    return-object p0
+.end method
+
+.method static synthetic access$900(Lcom/hiba/supertipsbet/ContentActivity;Ljava/util/List;)V
+    .registers 2
+
+    .line 47
+    invoke-direct {p0, p1}, Lcom/hiba/supertipsbet/ContentActivity;->processDataInBackground(Ljava/util/List;)V
+
+    return-void
+.end method
+
+.method private addToCache(Ljava/lang/String;Ljava/util/List;)V
+    .registers 8
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/lang/String;",
+            "Ljava/util/List<",
+            "Lcom/hiba/supertipsbet/entity/Coupon;",
+            ">;)V"
+        }
+    .end annotation
+
+    .line 314
+    invoke-direct {p0}, Lcom/hiba/supertipsbet/ContentActivity;->isMemoryPressureHigh()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_9
+
+    .line 315
+    invoke-direct {p0}, Lcom/hiba/supertipsbet/ContentActivity;->trimCacheAggressively()V
+
+    .line 318
+    :cond_9
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->dataCache:Ljava/util/Map;
+
+    invoke-interface {v0}, Ljava/util/Map;->size()I
+
+    move-result v0
+
+    const/4 v1, 0x5
+
+    if-lt v0, v1, :cond_4d
+
+    .line 321
+    new-instance v0, Ljava/util/ArrayList;
+
+    invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
+
+    .line 323
+    iget-object v1, p0, Lcom/hiba/supertipsbet/ContentActivity;->dataCache:Ljava/util/Map;
+
+    invoke-interface {v1}, Ljava/util/Map;->keySet()Ljava/util/Set;
+
+    move-result-object v1
+
+    invoke-interface {v1}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
+
+    move-result-object v1
+
+    const/4 v2, 0x0
+
+    :goto_22
+    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v3
+
+    if-eqz v3, :cond_37
+
+    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v3
+
+    check-cast v3, Ljava/lang/String;
+
+    const/4 v4, 0x2
+
+    if-ge v2, v4, :cond_37
+
+    .line 325
+    invoke-interface {v0, v3}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    add-int/lit8 v2, v2, 0x1
+
+    goto :goto_22
+
+    .line 331
+    :cond_37
+    invoke-interface {v0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+
+    move-result-object v0
+
+    :goto_3b
+    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_4d
+
+    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v1
+
+    check-cast v1, Ljava/lang/String;
+
+    .line 332
+    iget-object v2, p0, Lcom/hiba/supertipsbet/ContentActivity;->dataCache:Ljava/util/Map;
+
+    invoke-interface {v2, v1}, Ljava/util/Map;->remove(Ljava/lang/Object;)Ljava/lang/Object;
+
+    goto :goto_3b
+
+    .line 335
+    :cond_4d
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->dataCache:Ljava/util/Map;
+
+    invoke-interface {v0, p1, p2}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    return-void
+.end method
+
+.method private calculateCacheHitRate()D
+    .registers 5
+
+    .line 515
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->dataCache:Ljava/util/Map;
+
+    invoke-interface {v0}, Ljava/util/Map;->size()I
+
+    move-result v0
+
+    if-lez v0, :cond_20
+
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->dataCache:Ljava/util/Map;
+
+    invoke-interface {v0}, Ljava/util/Map;->size()I
+
+    move-result v0
+
+    int-to-double v0, v0
+
+    const-wide/high16 v2, 0x4059000000000000L  # 100.0
+
+    mul-double/2addr v0, v2
+
+    iget-object v2, p0, Lcom/hiba/supertipsbet/ContentActivity;->dates:Ljava/util/List;
+
+    invoke-interface {v2}, Ljava/util/List;->size()I
+
+    move-result v2
+
+    const/4 v3, 0x1
+
+    invoke-static {v2, v3}, Ljava/lang/Math;->max(II)I
+
+    move-result v2
+
+    int-to-double v2, v2
+
+    div-double/2addr v0, v2
+
+    return-wide v0
+
+    :cond_20
+    const-wide/16 v0, 0x0
+
+    return-wide v0
+.end method
+
+.method private displayData(Ljava/util/List;)V
+    .registers 6
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/util/List<",
+            "Lcom/hiba/supertipsbet/entity/Coupon;",
+            ">;)V"
+        }
+    .end annotation
+
+    .line 388
+    invoke-virtual {p0}, Lcom/hiba/supertipsbet/ContentActivity;->isFinishing()Z
+
+    move-result v0
+
+    if-nez v0, :cond_4d
+
+    invoke-virtual {p0}, Lcom/hiba/supertipsbet/ContentActivity;->isDestroyed()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_d
+
+    goto :goto_4d
+
+    :cond_d
+    if-eqz p1, :cond_4c
+
+    .line 393
+    invoke-interface {p1}, Ljava/util/List;->isEmpty()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_16
+
+    goto :goto_4c
+
+    :cond_16
+    const/4 v0, 0x0
+
+    .line 397
+    invoke-interface {p1, v0}, Ljava/util/List;->get(I)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/hiba/supertipsbet/entity/Coupon;
+
+    .line 398
+    iput-object p1, p0, Lcom/hiba/supertipsbet/ContentActivity;->couponDataSource:Ljava/util/List;
+
+    .line 400
+    new-instance v1, Ljava/util/ArrayList;
+
+    invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
+
+    .line 401
+    invoke-interface {p1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+
+    move-result-object p1
+
+    :cond_28
+    :goto_28
+    invoke-interface {p1}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_42
+
+    invoke-interface {p1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v2
+
+    check-cast v2, Lcom/hiba/supertipsbet/entity/Coupon;
+
+    .line 402
+    invoke-virtual {v2}, Lcom/hiba/supertipsbet/entity/Coupon;->getMatchList()Ljava/util/List;
+
+    move-result-object v3
+
+    if-eqz v3, :cond_28
+
+    .line 403
+    invoke-virtual {v2}, Lcom/hiba/supertipsbet/entity/Coupon;->getMatchList()Ljava/util/List;
+
+    move-result-object v2
+
+    invoke-interface {v1, v2}, Ljava/util/List;->addAll(Ljava/util/Collection;)Z
+
+    goto :goto_28
+
+    .line 407
+    :cond_42
+    invoke-direct {p0, v1}, Lcom/hiba/supertipsbet/ContentActivity;->updateAdapterData(Ljava/util/List;)V
+
+    .line 408
+    invoke-virtual {v0}, Lcom/hiba/supertipsbet/entity/Coupon;->getInformation()Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-direct {p0, p1}, Lcom/hiba/supertipsbet/ContentActivity;->updateNotification(Ljava/lang/String;)V
+
+    :cond_4c
+    :goto_4c
+    return-void
+
+    .line 389
+    :cond_4d
+    :goto_4d
+    const-string p1, "ContentActivity"
+
+    const-string v0, "Activity is finishing or destroyed, skipping data display"
+
+    invoke-static {p1, v0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    return-void
+.end method
+
+.method private displayData(Ljava/util/List;Ljava/util/List;)V
+    .registers 4
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/util/List<",
+            "Lcom/hiba/supertipsbet/entity/Coupon;",
+            ">;",
+            "Ljava/util/List<",
+            "Ljava/lang/Object;",
+            ">;)V"
+        }
+    .end annotation
+
+    .line 413
+    invoke-virtual {p0}, Lcom/hiba/supertipsbet/ContentActivity;->isFinishing()Z
+
+    move-result v0
+
+    if-nez v0, :cond_2a
+
+    invoke-virtual {p0}, Lcom/hiba/supertipsbet/ContentActivity;->isDestroyed()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_d
+
+    goto :goto_2a
+
+    :cond_d
+    if-eqz p1, :cond_29
+
+    .line 418
+    invoke-interface {p1}, Ljava/util/List;->isEmpty()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_16
+
+    goto :goto_29
+
+    :cond_16
+    const/4 v0, 0x0
+
+    .line 422
+    invoke-interface {p1, v0}, Ljava/util/List;->get(I)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/hiba/supertipsbet/entity/Coupon;
+
+    .line 423
+    iput-object p1, p0, Lcom/hiba/supertipsbet/ContentActivity;->couponDataSource:Ljava/util/List;
+
+    .line 425
+    invoke-direct {p0, p2}, Lcom/hiba/supertipsbet/ContentActivity;->updateAdapterData(Ljava/util/List;)V
+
+    .line 426
+    invoke-virtual {v0}, Lcom/hiba/supertipsbet/entity/Coupon;->getInformation()Ljava/lang/String;
+
+    move-result-object p1
+
+    invoke-direct {p0, p1}, Lcom/hiba/supertipsbet/ContentActivity;->updateNotification(Ljava/lang/String;)V
+
+    :cond_29
+    :goto_29
+    return-void
+
+    .line 414
+    :cond_2a
+    :goto_2a
+    const-string p1, "ContentActivity"
+
+    const-string p2, "Activity is finishing or destroyed, skipping data display"
+
+    invoke-static {p1, p2}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    return-void
+.end method
+
+.method private hideLoading()V
+    .registers 3
+
+    .line 156
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->mainHandler:Landroid/os/Handler;
+
+    new-instance v1, Lcom/hiba/supertipsbet/ContentActivity$$ExternalSyntheticLambda4;
+
+    invoke-direct {v1, p0}, Lcom/hiba/supertipsbet/ContentActivity$$ExternalSyntheticLambda4;-><init>(Lcom/hiba/supertipsbet/ContentActivity;)V
+
+    invoke-virtual {v0, v1}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
+
+    return-void
+.end method
+
+.method private initializeViews()V
+    .registers 3
+
+    .line 104
+    sget v0, Lcom/huge/betting/tips/R$id;->txtNotification:I
+
+    invoke-virtual {p0, v0}, Lcom/hiba/supertipsbet/ContentActivity;->findViewById(I)Landroid/view/View;
+
+    move-result-object v0
+
+    check-cast v0, Landroid/widget/TextView;
+
+    iput-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->txtNotification:Landroid/widget/TextView;
+
+    .line 105
+    sget v0, Lcom/huge/betting/tips/R$id;->recyclerView:I
+
+    invoke-virtual {p0, v0}, Lcom/hiba/supertipsbet/ContentActivity;->findViewById(I)Landroid/view/View;
+
+    move-result-object v0
+
+    check-cast v0, Landroidx/recyclerview/widget/RecyclerView;
+
+    iput-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->mRecyclerView:Landroidx/recyclerview/widget/RecyclerView;
+
+    .line 106
+    sget v0, Lcom/huge/betting/tips/R$id;->rvDates:I
+
+    invoke-virtual {p0, v0}, Lcom/hiba/supertipsbet/ContentActivity;->findViewById(I)Landroid/view/View;
+
+    move-result-object v0
+
+    check-cast v0, Landroidx/recyclerview/widget/RecyclerView;
+
+    iput-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->rvDates:Landroidx/recyclerview/widget/RecyclerView;
+
+    .line 109
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->mRecyclerView:Landroidx/recyclerview/widget/RecyclerView;
+
+    iget-object v1, p0, Lcom/hiba/supertipsbet/ContentActivity;->couponLayoutManager:Landroidx/recyclerview/widget/LinearLayoutManager;
+
+    invoke-virtual {v0, v1}, Landroidx/recyclerview/widget/RecyclerView;->setLayoutManager(Landroidx/recyclerview/widget/RecyclerView$LayoutManager;)V
+
+    .line 110
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->mRecyclerView:Landroidx/recyclerview/widget/RecyclerView;
+
+    const/16 v1, 0x32
+
+    invoke-virtual {v0, v1}, Landroidx/recyclerview/widget/RecyclerView;->setItemViewCacheSize(I)V
+
+    .line 112
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->mRecyclerView:Landroidx/recyclerview/widget/RecyclerView;
+
+    const/4 v1, 0x1
+
+    invoke-virtual {v0, v1}, Landroidx/recyclerview/widget/RecyclerView;->setDrawingCacheEnabled(Z)V
+
+    .line 113
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->mRecyclerView:Landroidx/recyclerview/widget/RecyclerView;
+
+    const/high16 v1, 0x100000
+
+    invoke-virtual {v0, v1}, Landroidx/recyclerview/widget/RecyclerView;->setDrawingCacheQuality(I)V
+
+    .line 115
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->rvDates:Landroidx/recyclerview/widget/RecyclerView;
+
+    iget-object v1, p0, Lcom/hiba/supertipsbet/ContentActivity;->datesLayoutManager:Landroidx/recyclerview/widget/LinearLayoutManager;
+
+    invoke-virtual {v0, v1}, Landroidx/recyclerview/widget/RecyclerView;->setLayoutManager(Landroidx/recyclerview/widget/RecyclerView$LayoutManager;)V
+
+    .line 117
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->rvDates:Landroidx/recyclerview/widget/RecyclerView;
+
+    const/16 v1, 0x14
+
+    invoke-virtual {v0, v1}, Landroidx/recyclerview/widget/RecyclerView;->setItemViewCacheSize(I)V
+
+    return-void
+.end method
+
+.method private isMemoryPressureHigh()Z
+    .registers 6
+
+    .line 339
+    invoke-static {}, Ljava/lang/Runtime;->getRuntime()Ljava/lang/Runtime;
+
+    move-result-object v0
+
+    .line 340
+    invoke-virtual {v0}, Ljava/lang/Runtime;->totalMemory()J
+
+    move-result-wide v1
+
+    invoke-virtual {v0}, Ljava/lang/Runtime;->freeMemory()J
+
+    move-result-wide v3
+
+    sub-long/2addr v1, v3
+
+    .line 341
+    invoke-virtual {v0}, Ljava/lang/Runtime;->maxMemory()J
+
+    move-result-wide v3
+
+    long-to-double v0, v1
+
+    long-to-double v2, v3
+
+    div-double/2addr v0, v2
+
+    const-wide v2, 0x3fe3333333333333L  # 0.6
+
+    cmpl-double v0, v0, v2
+
+    if-lez v0, :cond_1f
+
+    const/4 v0, 0x1
+
+    return v0
+
+    :cond_1f
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method private isValidResponse(Lretrofit2/Response;)Z
+    .registers 3
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lretrofit2/Response<",
+            "*>;)Z"
+        }
+    .end annotation
+
+    if-eqz p1, :cond_10
+
+    .line 164
+    invoke-virtual {p1}, Lretrofit2/Response;->body()Ljava/lang/Object;
+
+    move-result-object v0
+
+    if-eqz v0, :cond_10
+
+    invoke-virtual {p1}, Lretrofit2/Response;->isSuccessful()Z
+
+    move-result p1
+
+    if-eqz p1, :cond_10
+
+    const/4 p1, 0x1
+
+    return p1
+
+    :cond_10
+    const/4 p1, 0x0
+
+    return p1
+.end method
+
+.method private loadData()V
+    .registers 3
+
+    .line 121
+    invoke-virtual {p0}, Lcom/hiba/supertipsbet/ContentActivity;->getIntent()Landroid/content/Intent;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Landroid/content/Intent;->getExtras()Landroid/os/Bundle;
+
+    move-result-object v0
+
+    if-eqz v0, :cond_34
+
+    .line 123
+    const-string v1, "selectedIndex"
+
+    invoke-virtual {v0, v1}, Landroid/os/Bundle;->getInt(Ljava/lang/String;)I
+
+    move-result v0
+
+    .line 124
+    invoke-static {p0}, Lcom/hiba/supertipsbet/entity/MenuItem;->GetDataSource(Landroid/content/Context;)Ljava/util/List;
+
+    move-result-object v1
+
+    iput-object v1, p0, Lcom/hiba/supertipsbet/ContentActivity;->menuDataSource:Ljava/util/List;
+
+    .line 125
+    invoke-interface {v1, v0}, Ljava/util/List;->get(I)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/hiba/supertipsbet/entity/MenuItem;
+
+    iput-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->selectedMenu:Lcom/hiba/supertipsbet/entity/MenuItem;
+
+    if-eqz v0, :cond_34
+
+    .line 127
+    invoke-virtual {v0}, Lcom/hiba/supertipsbet/entity/MenuItem;->getMenuName()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-virtual {p0, v0}, Lcom/hiba/supertipsbet/ContentActivity;->setTitle(Ljava/lang/CharSequence;)V
+
+    .line 130
+    invoke-direct {p0}, Lcom/hiba/supertipsbet/ContentActivity;->showLoading()V
+
+    .line 137
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->executorService:Ljava/util/concurrent/ExecutorService;
+
+    new-instance v1, Lcom/hiba/supertipsbet/ContentActivity$$ExternalSyntheticLambda2;
+
+    invoke-direct {v1, p0}, Lcom/hiba/supertipsbet/ContentActivity$$ExternalSyntheticLambda2;-><init>(Lcom/hiba/supertipsbet/ContentActivity;)V
+
+    invoke-interface {v0, v1}, Ljava/util/concurrent/ExecutorService;->execute(Ljava/lang/Runnable;)V
+
+    :cond_34
+    return-void
+.end method
+
+.method private logPerformanceMetrics()V
+    .registers 12
+
+    .line 492
+    invoke-static {}, Ljava/lang/Runtime;->getRuntime()Ljava/lang/Runtime;
+
+    move-result-object v0
+
+    .line 493
+    invoke-virtual {v0}, Ljava/lang/Runtime;->totalMemory()J
+
+    move-result-wide v1
+
+    invoke-virtual {v0}, Ljava/lang/Runtime;->freeMemory()J
+
+    move-result-wide v3
+
+    sub-long/2addr v1, v3
+
+    .line 494
+    invoke-virtual {v0}, Ljava/lang/Runtime;->maxMemory()J
+
+    move-result-wide v3
+
+    long-to-double v5, v1
+
+    long-to-double v7, v3
+
+    div-double/2addr v5, v7
+
+    .line 497
+    const-string v0, "Performance Metrics:"
+
+    const-string v7, "ContentActivity"
+
+    invoke-static {v7, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 498
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    const-string v8, "Cache size: "
+
+    invoke-direct {v0, v8}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    iget-object v8, p0, Lcom/hiba/supertipsbet/ContentActivity;->dataCache:Ljava/util/Map;
+
+    invoke-interface {v8}, Ljava/util/Map;->size()I
+
+    move-result v8
+
+    invoke-virtual {v0, v8}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-static {v7, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 499
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    const-string v8, "Cache hit rate: "
+
+    invoke-direct {v0, v8}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    invoke-direct {p0}, Lcom/hiba/supertipsbet/ContentActivity;->calculateCacheHitRate()D
+
+    move-result-wide v8
+
+    invoke-virtual {v0, v8, v9}, Ljava/lang/StringBuilder;->append(D)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    const-string v8, "%"
+
+    invoke-virtual {v0, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-static {v7, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 500
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    const-string v9, "Total dates loaded: "
+
+    invoke-direct {v0, v9}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    iget-object v9, p0, Lcom/hiba/supertipsbet/ContentActivity;->dates:Ljava/util/List;
+
+    if-eqz v9, :cond_5f
+
+    invoke-interface {v9}, Ljava/util/List;->size()I
+
+    move-result v9
+
+    goto :goto_60
+
+    :cond_5f
+    const/4 v9, 0x0
+
+    :goto_60
+    invoke-virtual {v0, v9}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-static {v7, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 501
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    const-string v9, "Memory usage: "
+
+    invoke-direct {v0, v9}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    const-wide/high16 v9, 0x4059000000000000L  # 100.0
+
+    mul-double/2addr v9, v5
+
+    invoke-static {v9, v10}, Ljava/lang/Double;->valueOf(D)Ljava/lang/Double;
+
+    move-result-object v9
+
+    filled-new-array {v9}, [Ljava/lang/Object;
+
+    move-result-object v9
+
+    const-string v10, "%.2f"
+
+    invoke-static {v10, v9}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+
+    move-result-object v9
+
+    invoke-virtual {v0, v9}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-static {v7, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 502
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    const-string v8, "Used memory: "
+
+    invoke-direct {v0, v8}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    const-wide/16 v8, 0x400
+
+    div-long/2addr v1, v8
+
+    div-long/2addr v1, v8
+
+    invoke-virtual {v0, v1, v2}, Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    const-string v1, "MB"
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-static {v7, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 503
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    const-string v2, "Max memory: "
+
+    invoke-direct {v0, v2}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    div-long/2addr v3, v8
+
+    div-long/2addr v3, v8
+
+    invoke-virtual {v0, v3, v4}, Ljava/lang/StringBuilder;->append(J)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-static {v7, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    const-wide/high16 v0, 0x3fe0000000000000L  # 0.5
+
+    cmpl-double v0, v5, v0
+
+    if-lez v0, :cond_d4
+
+    .line 507
+    const-string v0, "WARNING: High memory usage detected!"
+
+    invoke-static {v7, v0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 508
+    invoke-direct {p0}, Lcom/hiba/supertipsbet/ContentActivity;->trimCacheAggressively()V
+
+    :cond_d4
+    return-void
+.end method
+
+.method private preloadDataForDate(Ljava/lang/String;)V
+    .registers 4
+
+    .line 233
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    const-string v1, "Preloading disabled for date: "
+
+    invoke-direct {v0, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p1
+
+    const-string v0, "ContentActivity"
+
+    invoke-static {v0, p1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    return-void
+.end method
+
+.method private preloadNearbyDates()V
+    .registers 3
+
+    .line 227
+    const-string v0, "ContentActivity"
+
+    const-string v1, "Preloading disabled to prevent memory leaks"
+
+    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    return-void
+.end method
+
+.method private preloadNearbyDatesAfterSelection()V
+    .registers 3
+
+    .line 295
+    const-string v0, "ContentActivity"
+
+    const-string v1, "Post-selection preloading disabled to prevent memory leaks"
+
+    invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    return-void
+.end method
+
+.method private processDataInBackground(Ljava/util/List;)V
+    .registers 6
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/util/List<",
+            "Lcom/hiba/supertipsbet/entity/Coupon;",
+            ">;)V"
+        }
+    .end annotation
+
+    .line 301
+    new-instance v0, Ljava/util/ArrayList;
+
+    invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
+
+    .line 302
+    invoke-interface {p1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+
+    move-result-object v1
+
+    :cond_9
+    :goto_9
+    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_23
+
+    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v2
+
+    check-cast v2, Lcom/hiba/supertipsbet/entity/Coupon;
+
+    .line 303
+    invoke-virtual {v2}, Lcom/hiba/supertipsbet/entity/Coupon;->getMatchList()Ljava/util/List;
+
+    move-result-object v3
+
+    if-eqz v3, :cond_9
+
+    .line 304
+    invoke-virtual {v2}, Lcom/hiba/supertipsbet/entity/Coupon;->getMatchList()Ljava/util/List;
+
+    move-result-object v2
+
+    invoke-interface {v0, v2}, Ljava/util/List;->addAll(Ljava/util/Collection;)Z
+
+    goto :goto_9
+
+    .line 309
+    :cond_23
+    iget-object v1, p0, Lcom/hiba/supertipsbet/ContentActivity;->mainHandler:Landroid/os/Handler;
+
+    new-instance v2, Lcom/hiba/supertipsbet/ContentActivity$$ExternalSyntheticLambda5;
+
+    invoke-direct {v2, p0, p1, v0}, Lcom/hiba/supertipsbet/ContentActivity$$ExternalSyntheticLambda5;-><init>(Lcom/hiba/supertipsbet/ContentActivity;Ljava/util/List;Ljava/util/List;)V
+
+    invoke-virtual {v1, v2}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
+
+    return-void
+.end method
+
+.method private setupDatesAdapter()V
+    .registers 4
+
+    .line 215
+    new-instance v0, Lcom/hiba/supertipsbet/adapter/DatesAdapter;
+
+    iget-object v1, p0, Lcom/hiba/supertipsbet/ContentActivity;->dates:Ljava/util/List;
+
+    iget-object v2, p0, Lcom/hiba/supertipsbet/ContentActivity;->rvDates:Landroidx/recyclerview/widget/RecyclerView;
+
+    invoke-direct {v0, p0, v1, v2}, Lcom/hiba/supertipsbet/adapter/DatesAdapter;-><init>(Landroid/content/Context;Ljava/util/List;Landroidx/recyclerview/widget/RecyclerView;)V
+
+    .line 216
+    new-instance v1, Lcom/hiba/supertipsbet/ContentActivity$$ExternalSyntheticLambda0;
+
+    invoke-direct {v1, p0}, Lcom/hiba/supertipsbet/ContentActivity$$ExternalSyntheticLambda0;-><init>(Lcom/hiba/supertipsbet/ContentActivity;)V
+
+    invoke-virtual {v0, v1}, Lcom/hiba/supertipsbet/adapter/DatesAdapter;->setOnItemListener(Lcom/hiba/supertipsbet/adapter/DatesAdapter$OnItemClickListener;)V
+
+    .line 217
+    iget-object v1, p0, Lcom/hiba/supertipsbet/ContentActivity;->rvDates:Landroidx/recyclerview/widget/RecyclerView;
+
+    invoke-virtual {v1, v0}, Landroidx/recyclerview/widget/RecyclerView;->setAdapter(Landroidx/recyclerview/widget/RecyclerView$Adapter;)V
+
+    .line 219
+    iget-object v1, p0, Lcom/hiba/supertipsbet/ContentActivity;->rvDates:Landroidx/recyclerview/widget/RecyclerView;
+
+    new-instance v2, Lcom/hiba/supertipsbet/ContentActivity$$ExternalSyntheticLambda1;
+
+    invoke-direct {v2, p0, v0}, Lcom/hiba/supertipsbet/ContentActivity$$ExternalSyntheticLambda1;-><init>(Lcom/hiba/supertipsbet/ContentActivity;Lcom/hiba/supertipsbet/adapter/DatesAdapter;)V
+
+    invoke-virtual {v1, v2}, Landroidx/recyclerview/widget/RecyclerView;->post(Ljava/lang/Runnable;)Z
+
+    return-void
+.end method
+
+.method private setupToolbar()V
+    .registers 3
+
+    .line 96
+    sget v0, Lcom/huge/betting/tips/R$id;->toolbar:I
+
+    invoke-virtual {p0, v0}, Lcom/hiba/supertipsbet/ContentActivity;->findViewById(I)Landroid/view/View;
+
+    move-result-object v0
+
+    check-cast v0, Landroidx/appcompat/widget/Toolbar;
+
+    .line 97
+    sget v1, Lcom/huge/betting/tips/R$color;->categoryOrange:I
+
+    invoke-virtual {p0, v1}, Lcom/hiba/supertipsbet/ContentActivity;->getColor(I)I
+
+    move-result v1
+
+    invoke-virtual {v0, v1}, Landroidx/appcompat/widget/Toolbar;->setBackgroundColor(I)V
+
+    .line 98
+    invoke-virtual {p0, v0}, Lcom/hiba/supertipsbet/ContentActivity;->setSupportActionBar(Landroidx/appcompat/widget/Toolbar;)V
+
+    .line 99
+    invoke-virtual {p0}, Lcom/hiba/supertipsbet/ContentActivity;->getSupportActionBar()Landroidx/appcompat/app/ActionBar;
+
+    move-result-object v0
+
+    const/4 v1, 0x1
+
+    invoke-virtual {v0, v1}, Landroidx/appcompat/app/ActionBar;->setDisplayHomeAsUpEnabled(Z)V
+
+    .line 100
+    invoke-virtual {p0}, Lcom/hiba/supertipsbet/ContentActivity;->getSupportActionBar()Landroidx/appcompat/app/ActionBar;
+
+    move-result-object v0
+
+    invoke-virtual {v0, v1}, Landroidx/appcompat/app/ActionBar;->setDisplayShowHomeEnabled(Z)V
+
+    return-void
+.end method
+
+.method private showLoading()V
+    .registers 3
+
+    .line 143
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->progressDialog:Landroid/app/ProgressDialog;
+
+    if-nez v0, :cond_16
+
+    .line 144
+    new-instance v0, Landroid/app/ProgressDialog;
+
+    invoke-direct {v0, p0}, Landroid/app/ProgressDialog;-><init>(Landroid/content/Context;)V
+
+    iput-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->progressDialog:Landroid/app/ProgressDialog;
+
+    .line 145
+    const-string v1, "Yükleniyor..."
+
+    invoke-virtual {v0, v1}, Landroid/app/ProgressDialog;->setMessage(Ljava/lang/CharSequence;)V
+
+    .line 146
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->progressDialog:Landroid/app/ProgressDialog;
+
+    const/4 v1, 0x0
+
+    invoke-virtual {v0, v1}, Landroid/app/ProgressDialog;->setCancelable(Z)V
+
+    .line 150
+    :cond_16
+    invoke-virtual {p0}, Lcom/hiba/supertipsbet/ContentActivity;->isFinishing()Z
+
+    move-result v0
+
+    if-nez v0, :cond_23
+
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->progressDialog:Landroid/app/ProgressDialog;
+
+    if-eqz v0, :cond_23
+
+    .line 151
+    invoke-virtual {v0}, Landroid/app/ProgressDialog;->show()V
+
+    :cond_23
+    return-void
+.end method
+
+.method private trimCache()V
+    .registers 6
+
+    .line 529
+    new-instance v0, Ljava/util/ArrayList;
+
+    invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
+
+    .line 533
+    iget-object v1, p0, Lcom/hiba/supertipsbet/ContentActivity;->dataCache:Ljava/util/Map;
+
+    invoke-interface {v1}, Ljava/util/Map;->keySet()Ljava/util/Set;
+
+    move-result-object v1
+
+    invoke-interface {v1}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
+
+    move-result-object v1
+
+    const/4 v2, 0x0
+
+    :goto_10
+    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v3
+
+    if-eqz v3, :cond_25
+
+    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v3
+
+    check-cast v3, Ljava/lang/String;
+
+    const/4 v4, 0x2
+
+    if-lt v2, v4, :cond_22
+
+    .line 535
+    invoke-interface {v0, v3}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    :cond_22
+    add-int/lit8 v2, v2, 0x1
+
+    goto :goto_10
+
+    .line 540
+    :cond_25
+    invoke-interface {v0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+
+    move-result-object v0
+
+    :goto_29
+    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_3b
+
+    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v1
+
+    check-cast v1, Ljava/lang/String;
+
+    .line 541
+    iget-object v2, p0, Lcom/hiba/supertipsbet/ContentActivity;->dataCache:Ljava/util/Map;
+
+    invoke-interface {v2, v1}, Ljava/util/Map;->remove(Ljava/lang/Object;)Ljava/lang/Object;
+
+    goto :goto_29
+
+    .line 545
+    :cond_3b
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->couponDataSource:Ljava/util/List;
+
+    if-eqz v0, :cond_45
+
+    .line 546
+    invoke-interface {v0}, Ljava/util/List;->clear()V
+
+    const/4 v0, 0x0
+
+    .line 547
+    iput-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->couponDataSource:Ljava/util/List;
+
+    .line 551
+    :cond_45
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->mAdapter:Lcom/hiba/supertipsbet/adapter/CouponAdapter;
+
+    const-string v1, "ContentActivity"
+
+    if-eqz v0, :cond_55
+
+    .line 553
+    :try_start_4b
+    invoke-virtual {v0}, Lcom/hiba/supertipsbet/adapter/CouponAdapter;->optimizeMemory()V
+    :try_end_4e
+    .catch Ljava/lang/Exception; {:try_start_4b .. :try_end_4e} :catch_4f
+
+    goto :goto_55
+
+    :catch_4f
+    move-exception v0
+
+    .line 555
+    const-string v2, "Error optimizing adapter memory in trimCache"
+
+    invoke-static {v1, v2, v0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+
+    .line 560
+    :cond_55
+    :goto_55
+    invoke-static {}, Ljava/lang/System;->gc()V
+
+    .line 562
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    const-string v2, "Cache trimmed. New size: "
+
+    invoke-direct {v0, v2}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    iget-object v2, p0, Lcom/hiba/supertipsbet/ContentActivity;->dataCache:Ljava/util/Map;
+
+    invoke-interface {v2}, Ljava/util/Map;->size()I
+
+    move-result v2
+
+    invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    return-void
+.end method
+
+.method private trimCacheAggressively()V
+    .registers 6
+
+    .line 349
+    new-instance v0, Ljava/util/ArrayList;
+
+    invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
+
+    .line 353
+    iget-object v1, p0, Lcom/hiba/supertipsbet/ContentActivity;->dataCache:Ljava/util/Map;
+
+    invoke-interface {v1}, Ljava/util/Map;->keySet()Ljava/util/Set;
+
+    move-result-object v1
+
+    invoke-interface {v1}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
+
+    move-result-object v1
+
+    const/4 v2, 0x0
+
+    :goto_10
+    invoke-interface {v1}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v3
+
+    if-eqz v3, :cond_25
+
+    invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v3
+
+    check-cast v3, Ljava/lang/String;
+
+    const/4 v4, 0x2
+
+    if-lt v2, v4, :cond_22
+
+    .line 355
+    invoke-interface {v0, v3}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    :cond_22
+    add-int/lit8 v2, v2, 0x1
+
+    goto :goto_10
+
+    .line 360
+    :cond_25
+    invoke-interface {v0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+
+    move-result-object v0
+
+    :goto_29
+    invoke-interface {v0}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_3b
+
+    invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v1
+
+    check-cast v1, Ljava/lang/String;
+
+    .line 361
+    iget-object v2, p0, Lcom/hiba/supertipsbet/ContentActivity;->dataCache:Ljava/util/Map;
+
+    invoke-interface {v2, v1}, Ljava/util/Map;->remove(Ljava/lang/Object;)Ljava/lang/Object;
+
+    goto :goto_29
+
+    .line 365
+    :cond_3b
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->mAdapter:Lcom/hiba/supertipsbet/adapter/CouponAdapter;
+
+    const-string v1, "ContentActivity"
+
+    if-eqz v0, :cond_4b
+
+    .line 367
+    :try_start_41
+    invoke-virtual {v0}, Lcom/hiba/supertipsbet/adapter/CouponAdapter;->optimizeMemory()V
+    :try_end_44
+    .catch Ljava/lang/Exception; {:try_start_41 .. :try_end_44} :catch_45
+
+    goto :goto_4b
+
+    :catch_45
+    move-exception v0
+
+    .line 369
+    const-string v2, "Error optimizing adapter memory"
+
+    invoke-static {v1, v2, v0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+
+    .line 374
+    :cond_4b
+    :goto_4b
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->couponDataSource:Ljava/util/List;
+
+    if-eqz v0, :cond_55
+
+    .line 375
+    invoke-interface {v0}, Ljava/util/List;->clear()V
+
+    const/4 v0, 0x0
+
+    .line 376
+    iput-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->couponDataSource:Ljava/util/List;
+
+    .line 380
+    :cond_55
+    invoke-static {}, Ljava/lang/System;->gc()V
+
+    .line 381
+    invoke-static {}, Ljava/lang/System;->gc()V
+
+    .line 383
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    const-string v2, "Cache aggressively trimmed. New size: "
+
+    invoke-direct {v0, v2}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    iget-object v2, p0, Lcom/hiba/supertipsbet/ContentActivity;->dataCache:Ljava/util/Map;
+
+    invoke-interface {v2}, Ljava/util/Map;->size()I
+
+    move-result v2
+
+    invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    invoke-static {v1, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    return-void
+.end method
+
+.method private updateAdapterData(Ljava/util/List;)V
+    .registers 5
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Ljava/util/List<",
+            "Ljava/lang/Object;",
+            ">;)V"
+        }
+    .end annotation
+
+    .line 431
+    invoke-virtual {p0}, Lcom/hiba/supertipsbet/ContentActivity;->isFinishing()Z
+
+    move-result v0
+
+    if-nez v0, :cond_3f
+
+    invoke-virtual {p0}, Lcom/hiba/supertipsbet/ContentActivity;->isDestroyed()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_d
+
+    goto :goto_3f
+
+    .line 436
+    :cond_d
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->mAdapter:Lcom/hiba/supertipsbet/adapter/CouponAdapter;
+
+    if-nez v0, :cond_31
+
+    .line 437
+    new-instance v0, Lcom/hiba/supertipsbet/adapter/CouponAdapter;
+
+    iget-object v1, p0, Lcom/hiba/supertipsbet/ContentActivity;->mRecyclerView:Landroidx/recyclerview/widget/RecyclerView;
+
+    iget-object v2, p0, Lcom/hiba/supertipsbet/ContentActivity;->selectedMenu:Lcom/hiba/supertipsbet/entity/MenuItem;
+
+    invoke-virtual {v2}, Lcom/hiba/supertipsbet/entity/MenuItem;->getIcon()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-direct {v0, p0, p1, v1, v2}, Lcom/hiba/supertipsbet/adapter/CouponAdapter;-><init>(Landroid/content/Context;Ljava/util/List;Landroidx/recyclerview/widget/RecyclerView;Ljava/lang/String;)V
+
+    iput-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->mAdapter:Lcom/hiba/supertipsbet/adapter/CouponAdapter;
+
+    .line 438
+    new-instance p1, Ljava/lang/ref/WeakReference;
+
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->mAdapter:Lcom/hiba/supertipsbet/adapter/CouponAdapter;
+
+    invoke-direct {p1, v0}, Ljava/lang/ref/WeakReference;-><init>(Ljava/lang/Object;)V
+
+    iput-object p1, p0, Lcom/hiba/supertipsbet/ContentActivity;->mAdapterRef:Ljava/lang/ref/WeakReference;
+
+    .line 439
+    iget-object p1, p0, Lcom/hiba/supertipsbet/ContentActivity;->mRecyclerView:Landroidx/recyclerview/widget/RecyclerView;
+
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->mAdapter:Lcom/hiba/supertipsbet/adapter/CouponAdapter;
+
+    invoke-virtual {p1, v0}, Landroidx/recyclerview/widget/RecyclerView;->setAdapter(Landroidx/recyclerview/widget/RecyclerView$Adapter;)V
+
+    goto :goto_34
+
+    .line 441
+    :cond_31
+    invoke-virtual {v0, p1}, Lcom/hiba/supertipsbet/adapter/CouponAdapter;->updateData(Ljava/util/List;)V
+
+    .line 444
+    :goto_34
+    iget-object p1, p0, Lcom/hiba/supertipsbet/ContentActivity;->mAdapter:Lcom/hiba/supertipsbet/adapter/CouponAdapter;
+
+    new-instance v0, Lcom/hiba/supertipsbet/ContentActivity$4;
+
+    invoke-direct {v0, p0}, Lcom/hiba/supertipsbet/ContentActivity$4;-><init>(Lcom/hiba/supertipsbet/ContentActivity;)V
+
+    invoke-virtual {p1, v0}, Lcom/hiba/supertipsbet/adapter/CouponAdapter;->setOnLoadMoreListener(Lcom/hiba/supertipsbet/adapter/CouponAdapter$OnLoadMoreListener;)V
+
+    return-void
+
+    .line 432
+    :cond_3f
+    :goto_3f
+    const-string p1, "ContentActivity"
+
+    const-string v0, "Activity is finishing or destroyed, skipping adapter update"
+
+    invoke-static {p1, v0}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    return-void
+.end method
+
+.method private updateNotification(Ljava/lang/String;)V
+    .registers 3
+
+    if-eqz p1, :cond_14
+
+    .line 453
+    invoke-virtual {p1}, Ljava/lang/String;->isEmpty()Z
+
+    move-result v0
+
+    if-nez v0, :cond_14
+
+    .line 454
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->txtNotification:Landroid/widget/TextView;
+
+    invoke-virtual {v0, p1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
+
+    .line 455
+    iget-object p1, p0, Lcom/hiba/supertipsbet/ContentActivity;->txtNotification:Landroid/widget/TextView;
+
+    const/4 v0, 0x0
+
+    invoke-virtual {p1, v0}, Landroid/widget/TextView;->setVisibility(I)V
+
+    return-void
+
+    .line 457
+    :cond_14
+    iget-object p1, p0, Lcom/hiba/supertipsbet/ContentActivity;->txtNotification:Landroid/widget/TextView;
+
+    const/16 v0, 0x8
+
+    invoke-virtual {p1, v0}, Landroid/widget/TextView;->setVisibility(I)V
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public bindData(Z)V
+    .registers 5
+
+    .line 168
+    iget-boolean v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->isDataLoading:Z
+
+    if-eqz v0, :cond_5
+
+    return-void
+
+    .line 170
+    :cond_5
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->apiService:Lcom/hiba/supertipsbet/api/ApiInterface;
+
+    iget-object v1, p0, Lcom/hiba/supertipsbet/ContentActivity;->selectedMenu:Lcom/hiba/supertipsbet/entity/MenuItem;
+
+    invoke-virtual {v1}, Lcom/hiba/supertipsbet/entity/MenuItem;->getMenuName()Ljava/lang/String;
+
+    move-result-object v1
+
+    iget v2, p0, Lcom/hiba/supertipsbet/ContentActivity;->currentPage:I
+
+    invoke-interface {v0, v1, p1, v2}, Lcom/hiba/supertipsbet/api/ApiInterface;->getDataWithPage(Ljava/lang/String;ZI)Lretrofit2/Call;
+
+    move-result-object p1
+
+    .line 171
+    new-instance v0, Lcom/hiba/supertipsbet/ContentActivity$1;
+
+    invoke-direct {v0, p0}, Lcom/hiba/supertipsbet/ContentActivity$1;-><init>(Lcom/hiba/supertipsbet/ContentActivity;)V
+
+    invoke-interface {p1, v0}, Lretrofit2/Call;->enqueue(Lretrofit2/Callback;)V
+
+    return-void
+.end method
+
+.method public bindDates()V
+    .registers 3
+
+    .line 191
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->apiService:Lcom/hiba/supertipsbet/api/ApiInterface;
+
+    iget-object v1, p0, Lcom/hiba/supertipsbet/ContentActivity;->selectedMenu:Lcom/hiba/supertipsbet/entity/MenuItem;
+
+    invoke-virtual {v1}, Lcom/hiba/supertipsbet/entity/MenuItem;->getDataId()I
+
+    move-result v1
+
+    invoke-interface {v0, v1}, Lcom/hiba/supertipsbet/api/ApiInterface;->getCategoryDates(I)Lretrofit2/Call;
+
+    move-result-object v0
+
+    .line 192
+    new-instance v1, Lcom/hiba/supertipsbet/ContentActivity$2;
+
+    invoke-direct {v1, p0}, Lcom/hiba/supertipsbet/ContentActivity$2;-><init>(Lcom/hiba/supertipsbet/ContentActivity;)V
+
+    invoke-interface {v0, v1}, Lretrofit2/Call;->enqueue(Lretrofit2/Callback;)V
+
+    return-void
+.end method
+
+.method public getDataByDate(Ljava/lang/String;)V
+    .registers 4
+
+    .line 244
+    iget-boolean v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->isDataLoading:Z
+
+    if-eqz v0, :cond_5
+
+    return-void
+
+    .line 247
+    :cond_5
+    iput-object p1, p0, Lcom/hiba/supertipsbet/ContentActivity;->currentDate:Ljava/lang/String;
+
+    .line 248
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->dates:Ljava/util/List;
+
+    if-eqz v0, :cond_19
+
+    invoke-interface {v0}, Ljava/util/List;->isEmpty()Z
+
+    move-result v0
+
+    if-nez v0, :cond_19
+
+    .line 249
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->dates:Ljava/util/List;
+
+    invoke-interface {v0, p1}, Ljava/util/List;->indexOf(Ljava/lang/Object;)I
+
+    move-result v0
+
+    iput v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->currentDateIndex:I
+
+    .line 253
+    :cond_19
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->dataCache:Ljava/util/Map;
+
+    invoke-interface {v0, p1}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Ljava/util/List;
+
+    if-eqz v0, :cond_2e
+
+    .line 255
+    iget-object p1, p0, Lcom/hiba/supertipsbet/ContentActivity;->mainHandler:Landroid/os/Handler;
+
+    new-instance v1, Lcom/hiba/supertipsbet/ContentActivity$$ExternalSyntheticLambda3;
+
+    invoke-direct {v1, p0, v0}, Lcom/hiba/supertipsbet/ContentActivity$$ExternalSyntheticLambda3;-><init>(Lcom/hiba/supertipsbet/ContentActivity;Ljava/util/List;)V
+
+    invoke-virtual {p1, v1}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
+
+    return-void
+
+    :cond_2e
+    const/4 v0, 0x1
+
+    .line 260
+    iput-boolean v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->isDataLoading:Z
+
+    .line 262
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->apiService:Lcom/hiba/supertipsbet/api/ApiInterface;
+
+    iget-object v1, p0, Lcom/hiba/supertipsbet/ContentActivity;->selectedMenu:Lcom/hiba/supertipsbet/entity/MenuItem;
+
+    invoke-virtual {v1}, Lcom/hiba/supertipsbet/entity/MenuItem;->getDataId()I
+
+    move-result v1
+
+    invoke-interface {v0, v1, p1}, Lcom/hiba/supertipsbet/api/ApiInterface;->getBetsByDate(ILjava/lang/String;)Lretrofit2/Call;
+
+    move-result-object v0
+
+    .line 263
+    new-instance v1, Lcom/hiba/supertipsbet/ContentActivity$3;
+
+    invoke-direct {v1, p0, p1}, Lcom/hiba/supertipsbet/ContentActivity$3;-><init>(Lcom/hiba/supertipsbet/ContentActivity;Ljava/lang/String;)V
+
+    invoke-interface {v0, v1}, Lretrofit2/Call;->enqueue(Lretrofit2/Callback;)V
+
+    return-void
+.end method
+
+.method synthetic lambda$getDataByDate$2$com-hiba-supertipsbet-ContentActivity(Ljava/util/List;)V
+    .registers 2
+
+    .line 255
+    invoke-direct {p0, p1}, Lcom/hiba/supertipsbet/ContentActivity;->displayData(Ljava/util/List;)V
+
+    return-void
+.end method
+
+.method synthetic lambda$hideLoading$0$com-hiba-supertipsbet-ContentActivity()V
+    .registers 2
+
+    .line 157
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->progressDialog:Landroid/app/ProgressDialog;
+
+    if-eqz v0, :cond_f
+
+    invoke-virtual {v0}, Landroid/app/ProgressDialog;->isShowing()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_f
+
+    .line 158
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->progressDialog:Landroid/app/ProgressDialog;
+
+    invoke-virtual {v0}, Landroid/app/ProgressDialog;->dismiss()V
+
+    :cond_f
+    return-void
+.end method
+
+.method synthetic lambda$processDataInBackground$3$com-hiba-supertipsbet-ContentActivity(Ljava/util/List;Ljava/util/List;)V
+    .registers 3
+
+    .line 309
+    invoke-direct {p0, p1, p2}, Lcom/hiba/supertipsbet/ContentActivity;->displayData(Ljava/util/List;Ljava/util/List;)V
+
+    return-void
+.end method
+
+.method synthetic lambda$setupDatesAdapter$1$com-hiba-supertipsbet-ContentActivity(Lcom/hiba/supertipsbet/adapter/DatesAdapter;)V
+    .registers 3
+
+    .line 220
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->rvDates:Landroidx/recyclerview/widget/RecyclerView;
+
+    invoke-virtual {p1, v0}, Lcom/hiba/supertipsbet/adapter/DatesAdapter;->selectLastItem(Landroidx/recyclerview/widget/RecyclerView;)V
+
+    return-void
+.end method
+
+.method protected onCreate(Landroid/os/Bundle;)V
+    .registers 4
+
+    .line 76
+    invoke-super {p0, p1}, Landroidx/appcompat/app/AppCompatActivity;->onCreate(Landroid/os/Bundle;)V
+
+    .line 77
+    sget p1, Lcom/huge/betting/tips/R$layout;->activity_content:I
+
+    invoke-virtual {p0, p1}, Lcom/hiba/supertipsbet/ContentActivity;->setContentView(I)V
+
+    const/4 p1, 0x3
+
+    .line 80
+    invoke-static {p1}, Ljava/util/concurrent/Executors;->newFixedThreadPool(I)Ljava/util/concurrent/ExecutorService;
+
+    move-result-object p1
+
+    iput-object p1, p0, Lcom/hiba/supertipsbet/ContentActivity;->executorService:Ljava/util/concurrent/ExecutorService;
+
+    .line 81
+    new-instance p1, Landroid/os/Handler;
+
+    invoke-static {}, Landroid/os/Looper;->getMainLooper()Landroid/os/Looper;
+
+    move-result-object v0
+
+    invoke-direct {p1, v0}, Landroid/os/Handler;-><init>(Landroid/os/Looper;)V
+
+    iput-object p1, p0, Lcom/hiba/supertipsbet/ContentActivity;->mainHandler:Landroid/os/Handler;
+
+    .line 84
+    invoke-static {}, Lcom/hiba/supertipsbet/api/ApiClient;->getClient()Lretrofit2/Retrofit;
+
+    move-result-object p1
+
+    const-class v0, Lcom/hiba/supertipsbet/api/ApiInterface;
+
+    invoke-virtual {p1, v0}, Lretrofit2/Retrofit;->create(Ljava/lang/Class;)Ljava/lang/Object;
+
+    move-result-object p1
+
+    check-cast p1, Lcom/hiba/supertipsbet/api/ApiInterface;
+
+    iput-object p1, p0, Lcom/hiba/supertipsbet/ContentActivity;->apiService:Lcom/hiba/supertipsbet/api/ApiInterface;
+
+    .line 87
+    new-instance p1, Landroidx/recyclerview/widget/LinearLayoutManager;
+
+    const/4 v0, 0x1
+
+    const/4 v1, 0x0
+
+    invoke-direct {p1, p0, v0, v1}, Landroidx/recyclerview/widget/LinearLayoutManager;-><init>(Landroid/content/Context;IZ)V
+
+    iput-object p1, p0, Lcom/hiba/supertipsbet/ContentActivity;->couponLayoutManager:Landroidx/recyclerview/widget/LinearLayoutManager;
+
+    .line 88
+    new-instance p1, Landroidx/recyclerview/widget/LinearLayoutManager;
+
+    invoke-direct {p1, p0, v1, v1}, Landroidx/recyclerview/widget/LinearLayoutManager;-><init>(Landroid/content/Context;IZ)V
+
+    iput-object p1, p0, Lcom/hiba/supertipsbet/ContentActivity;->datesLayoutManager:Landroidx/recyclerview/widget/LinearLayoutManager;
+
+    .line 90
+    invoke-direct {p0}, Lcom/hiba/supertipsbet/ContentActivity;->setupToolbar()V
+
+    .line 91
+    invoke-direct {p0}, Lcom/hiba/supertipsbet/ContentActivity;->initializeViews()V
+
+    .line 92
+    invoke-direct {p0}, Lcom/hiba/supertipsbet/ContentActivity;->loadData()V
+
+    return-void
+.end method
+
+.method protected onDestroy()V
+    .registers 4
+
+    .line 463
+    invoke-super {p0}, Landroidx/appcompat/app/AppCompatActivity;->onDestroy()V
+
+    .line 466
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->executorService:Ljava/util/concurrent/ExecutorService;
+
+    if-eqz v0, :cond_12
+
+    invoke-interface {v0}, Ljava/util/concurrent/ExecutorService;->isShutdown()Z
+
+    move-result v0
+
+    if-nez v0, :cond_12
+
+    .line 467
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->executorService:Ljava/util/concurrent/ExecutorService;
+
+    invoke-interface {v0}, Ljava/util/concurrent/ExecutorService;->shutdown()V
+
+    .line 471
+    :cond_12
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->dataCache:Ljava/util/Map;
+
+    invoke-interface {v0}, Ljava/util/Map;->clear()V
+
+    .line 474
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->mAdapterRef:Ljava/lang/ref/WeakReference;
+
+    if-eqz v0, :cond_35
+
+    invoke-virtual {v0}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
+
+    move-result-object v0
+
+    if-eqz v0, :cond_35
+
+    .line 476
+    :try_start_21
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->mAdapterRef:Ljava/lang/ref/WeakReference;
+
+    invoke-virtual {v0}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/hiba/supertipsbet/adapter/CouponAdapter;
+
+    invoke-virtual {v0}, Lcom/hiba/supertipsbet/adapter/CouponAdapter;->clear()V
+    :try_end_2c
+    .catch Ljava/lang/Exception; {:try_start_21 .. :try_end_2c} :catch_2d
+
+    goto :goto_35
+
+    :catch_2d
+    move-exception v0
+
+    .line 478
+    const-string v1, "ContentActivity"
+
+    const-string v2, "Error clearing adapter"
+
+    invoke-static {v1, v2, v0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+
+    .line 483
+    :cond_35
+    :goto_35
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->progressDialog:Landroid/app/ProgressDialog;
+
+    if-eqz v0, :cond_44
+
+    invoke-virtual {v0}, Landroid/app/ProgressDialog;->isShowing()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_44
+
+    .line 484
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->progressDialog:Landroid/app/ProgressDialog;
+
+    invoke-virtual {v0}, Landroid/app/ProgressDialog;->dismiss()V
+
+    .line 488
+    :cond_44
+    invoke-direct {p0}, Lcom/hiba/supertipsbet/ContentActivity;->logPerformanceMetrics()V
+
+    return-void
+.end method
+
+.method public onLowMemory()V
+    .registers 3
+
+    .line 567
+    invoke-super {p0}, Landroidx/appcompat/app/AppCompatActivity;->onLowMemory()V
+
+    .line 568
+    const-string v0, "ContentActivity"
+
+    const-string v1, "Low memory warning received"
+
+    invoke-static {v0, v1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 569
+    invoke-direct {p0}, Lcom/hiba/supertipsbet/ContentActivity;->trimCacheAggressively()V
+
+    return-void
+.end method
+
+.method protected onPause()V
+    .registers 3
+
+    .line 520
+    invoke-super {p0}, Landroidx/appcompat/app/AppCompatActivity;->onPause()V
+
+    .line 522
+    iget-object v0, p0, Lcom/hiba/supertipsbet/ContentActivity;->dataCache:Ljava/util/Map;
+
+    invoke-interface {v0}, Ljava/util/Map;->size()I
+
+    move-result v0
+
+    const/4 v1, 0x2
+
+    if-le v0, v1, :cond_f
+
+    .line 523
+    invoke-direct {p0}, Lcom/hiba/supertipsbet/ContentActivity;->trimCache()V
+
+    :cond_f
+    return-void
+.end method
+
+.method public onSupportNavigateUp()Z
+    .registers 2
+
+    .line 239
+    invoke-virtual {p0}, Lcom/hiba/supertipsbet/ContentActivity;->onBackPressed()V
+
+    const/4 v0, 0x1
+
+    return v0
+.end method
+
+.method public onTrimMemory(I)V
+    .registers 4
+
+    .line 574
+    invoke-super {p0, p1}, Landroidx/appcompat/app/AppCompatActivity;->onTrimMemory(I)V
+
+    const/16 v0, 0x3c
+
+    if-lt p1, v0, :cond_1e
+
+    .line 576
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    const-string v1, "Trim memory warning received - level: "
+
+    invoke-direct {v0, v1}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
+
+    invoke-virtual {v0, p1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+
+    move-result-object p1
+
+    invoke-virtual {p1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object p1
+
+    const-string v0, "ContentActivity"
+
+    invoke-static {v0, p1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 577
+    invoke-direct {p0}, Lcom/hiba/supertipsbet/ContentActivity;->trimCacheAggressively()V
+
+    :cond_1e
+    return-void
+.end method
